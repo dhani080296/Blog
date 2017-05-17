@@ -49,8 +49,12 @@ class UsersController extends BackendController
     $selectedUser=$request->selected_user;
     if($deleteOption=="delete"){
         // delete posts
-        $user->posts()->withTrashed()->forceDelete();
-        $this->removeImage($user->posts()->withTrashed()->image);
+        $posts=$user->posts()->withTrashed();
+        foreach ($posts->get() as $post) {
+            $this->removeImage($post->image);
+        }
+        $posts->forceDelete();
+        
         // delete user
     }else if($deleteOption=="attribute"){
       $user->posts()->update(['author_id'=>$selectedUser]);  

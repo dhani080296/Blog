@@ -37,7 +37,7 @@
                         <div class="widget-body">
                             <ul class="popular-posts">
                             @foreach($popularPosts as $post)
-                             @if($category->id != config('cms.default_category_id'))
+                             @if(!is_null($post->category))
                                 <li>
                                 @if($post->image_thumb_url)
                                     <div class="post-image">

@@ -6,7 +6,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Categories
+        Users
       </h1>
       <small>Display All Users</small>
       <ol class="breadcrumb">

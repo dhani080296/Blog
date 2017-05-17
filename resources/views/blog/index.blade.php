@@ -1,6 +1,8 @@
 @extends('layout.main')
 
 @section('content')
+<!-- kategori tidak boleh kosong... 
+atu bisa jg !is_null($post->category) ? $post->category->title  -->
     <div class="container">
         <div class="row">
             <div class="col-md-8">
@@ -21,7 +23,7 @@
             </div>
             @endif
              @foreach($posts as $post)
-              <!-- @if($post->category_id != config('cms.default_category_id')) -->
+              @if(!is_null($post->category))
                 <article class="post-item">
                 @if($post->image_url)
                     <div class="post-item-image">
@@ -52,7 +54,7 @@
                         </div>
                     </div>
                 </article>
-                <!-- @endif -->
+                @endif
                 @endforeach
                 @endif
                 <nav>

@@ -13,7 +13,11 @@ class UserDestroyRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+       return !($this->route('users') == config('cms.default_user_id')|| $this->route('users')== auth()->user()->id);
+    }
+     public function forbiddenResponse()
+    {
+        return redirect()->back()->with('error-message', 'You cannot delete default User or delete yourself!');
     }
 
     /**

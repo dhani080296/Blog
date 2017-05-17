@@ -9,6 +9,7 @@
                     		</tr>
                     	</thead>
                     	<tbody>
+                         <?php $currentUser= auth()->user(); ?>
                     	@foreach($users as $user)
                     		<tr>
                     			<td>
@@ -18,13 +19,15 @@
                     			<a href="{{route('users.edit',$user->id)}}" class="btn btn-xs btn-default">
                     				<i class="fa fa-edit"></i>
                     			</a>
-                                   
+                                    @if($user->id == config('cms.default_user_id')|| $user->id == $currentUser->id)
+                                   <a type="submit" class="btn btn-xs btn-danger disabled" href="{{route('backend.users.confirm',$user->id)}}">
+                                        <i class="fa fa-times"></i>
+                    			</a>
+                                   @else
                                    <a type="submit" class="btn btn-xs btn-danger" href="{{route('backend.users.confirm',$user->id)}}">
                                         <i class="fa fa-times"></i>
-                                   
-                    			
-                    			</a>
-
+                                   </a>
+                                   @endif
                           <!-- {!!Form::close()!!} -->
 
                     			</td>

@@ -5,10 +5,11 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use GrahamCampbell\Markdown\Facades\Markdown;
+use Laratrust\Traits\LaratrustUserTrait;
 class User extends Authenticatable
 {
     use Notifiable;
-
+    use LaratrustUserTrait;
     /**
      * The attributes that are mass assignable.
      *
@@ -43,6 +44,6 @@ class User extends Authenticatable
     }
     public function setPasswordAttribute($value)
 {
-    if (!empty($value)) $this->attributes['password'] = crypt($value,'');
+    if (!empty($value)) $this->attributes['password'] = bcrypt($value);
 }
 }

@@ -6,7 +6,7 @@ use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 
-class post extends Model
+class Post extends Model
 {   protected  $fillable=['title','slug','excerpt','body','published_at','category_id','image'];
      use SoftDeletes;
     //protected  $fillable=['view_count'];
